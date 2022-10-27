@@ -1,0 +1,142 @@
+#!/bin/bash
+
+## who am i? ##
+_script="$(readlink -f ${BASH_SOURCE[0]})"
+ 
+## Delete last component from $_script ##
+_base="$(dirname $_script)"
+ 
+## Okay, print it ##
+echo "Script name : $_script"
+echo "Current working dir : $PWD"
+echo "Script location path (dir) : $_base"
+
+rm -rf ~/assignment1/home ~/assignment1/etc
+mkdir -p ~/assignment1/etc ~/assignment1/home
+if [ ! -f ~/assignment1/accounts ]; then
+   echo '#!/bin/bash
+#Make it portable to other computers.
+etcdir=$HOME/assignment1/etc
+homedir=$HOME/assignment1/home
+
+# The while loop at end of script is now run to allow selection of options
+
+function List ()
+{
+clear
+read -p \
+"
+Please select option that you require:
+
+1) Delete user account
+2) Suspend user account
+3) Reinstate user account
+4) Exit
+" answer
+}
+
+function DeleteUser ()
+{
+echo "You as an EE206 omplete this function."
+sleep 2
+}
+
+function SuspendUser ()
+{
+echo "You as an EE206 student must complete this function."
+sleep 2
+}
+
+function ReinstateUser ()
+{
+echo "You as an EE206 student must complete this function."
+sleep 2
+}
+
+function InvalidInput ()
+{
+echo -e "\nYour input is invalid -- please select 1-4 \n"
+sleep 2
+}
+
+#Exits script.
+function Exit ()
+{
+echo -e "Script terminated -- Goodbye.\n"
+exit
+}
+
+#Keep looping until Exit is selected
+while [ TRUE ]
+do
+List
+#Checks value of answer and runs appropriate function.
+case $answer in
+1) DeleteUser;;
+2) SuspendUser;;
+3) ReinstateUser;;
+4) Exit;;
+*) InvalidInput;;
+esac
+done
+'>~/assignment1/accounts
+chmod u+x ~/assignment1/accounts
+fi
+echo '#######
+#Group#
+#######
+staff:x:100:
+test:x:25:blackj,brownj,coppersm
+finance:x:26:blackj,brownj,whitej,greenm
+sales:x:27:blackj,brownj,greenm,whitej,greyp
+manufacture:x:28:blackj,greyp,goldsmij,brownj,whitej
+development:x:29:blackj,brownj,whitej,greyp,silversa
+research:x:30:whitej,greyp,silversa,blacksma' > ~/assignment1/etc/group
+echo '#########
+#Aliases#
+#########
+staff:blackj,brownj,whitej,greyp,silversa,goldsmij,blacksma,greenm,coppersm
+#
+Joe.Black:blackj
+John.Brown:brownj
+Jack.White:whitej
+Pat.Grey:greyp
+Angela.Silversmith:silversa
+Joe.Goldsmith:goldsmij
+Anne.Blacksmith:blacksma
+Mary.Green:greenm
+Mary.Louise.Coppersmith:coppersm' > ~/assignment1/etc/aliases
+echo '########
+#Shadow#
+########
+blackj:$8a$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2g0aZMA6SIOkLABUji:13503:0:99999:7:::
+brownj:$8a$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2g0bZMA6SIOkLCDUji:13503:0:99999:7:::
+whitej:$8a$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2g0cZMA6SIOkLEFUji:13503:0:99999:7:::
+greyp:$28$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2g0EdMA6SIOkLAGHji:13503:0:99999:7:::
+silversa:$8a$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2e0EZMA6SIIJLARUji:13503:0:99999:7:::
+goldsmij:$8a$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2f0EZMA6SIKLLARUji:13503:0:99999:7:::
+blacksma:$8a$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2g0EZMA6SIMNLARUji:13503:0:99999:7:::
+greenm:$28$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2g0hZMA6SIOkOPRUji:13503:0:99999:7:::
+coppersm:$8a$05$4Nc0gUzrgL1tRJW9tqXU3.uWbiZT6aYTgOs2i0EZMA6SIQRLARUji:13503:0:99999:7:::' >~/assignment1/etc/shadow
+echo '########
+#Passwd#
+########
+blackj:x:1001:100:Joe Black:/home/blackj:/bin/bash
+brownj:x:1002:100:John Brown:/home/brownj:/bin/bash
+whitej:x:1003:100:Jack White:/home/whitej:/bin/bash
+greyp:x:1004:100:Pat Grey:/home/greyp:/bin/bash
+silversa:x:1005:100:Angela Silversmith:/home/silversa:/bin/bash
+goldsmij:x:1006:100:Joe Goldsmith:/home/goldsmij:/bin/bash
+blacksma:x:1007:100:Anne Blacksmith:/home/blacksma:/bin/bash
+greenm:x:1008:100:Mary Green:/home/greenm:/bin/bash
+coppersm:x:1009:100:Mary Louise Coppersmith:/home/coppersm:/bin/bash' >~/assignment1/etc/passwd
+mkdir -p ~/assignment1/home/blackj/public_html
+mkdir -p ~/assignment1/home/brownj/public_html
+mkdir -p ~/assignment1/home/whitej/public_html
+mkdir -p ~/assignment1/home/greyp/public_html
+mkdir -p ~/assignment1/home/silversa/public_html
+mkdir -p ~/assignment1/home/goldsmij/public_html
+mkdir -p ~/assignment1/home/blacksma/public_html
+mkdir -p ~/assignment1/home/greenm/public_html
+mkdir -p ~/assignment1/home/coppersm/public_html
+
