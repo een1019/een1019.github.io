@@ -37,19 +37,19 @@ Please select option that you require:
 
 function DeleteUser ()
 {
-echo "You as an EE206 omplete this function."
+echo "You as an EEN1019 omplete this function."
 sleep 2
 }
 
 function SuspendUser ()
 {
-echo "You as an EE206 student must complete this function."
+echo "You as an EEN1019 student must complete this function."
 sleep 2
 }
 
 function ReinstateUser ()
 {
-echo "You as an EE206 student must complete this function."
+echo "You as an EEN1019 student must complete this function."
 sleep 2
 }
 
