@@ -37,7 +37,7 @@ Please select option that you require:
 
 function DeleteUser ()
 {
-echo "You as an EEN1019 omplete this function."
+echo "You as an EEN1019 student must complete this function."
 sleep 2
 }
 
